@@ -11,9 +11,11 @@
 .detail-header {
   display: flex;
   align-items: center;
-  padding: 16px 20px;
+  padding: 12px 20px;
+  min-height: 56px;
   border-bottom: 1px solid #e2e8f0;
   gap: 16px;
+  box-sizing: border-box;
 }
 
 .header-nav {
@@ -549,11 +551,20 @@
 
 .suggestions-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.suggestions-row::-webkit-scrollbar {
+  display: none;
 }
 
 .suggestion-btn {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -565,6 +576,7 @@
   color: #334155;
   cursor: pointer;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .suggestion-btn:hover:not(:disabled) {
