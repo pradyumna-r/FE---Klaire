@@ -40,17 +40,8 @@
   color: #334155;
 }
 
-.header-user {
+.header-spacer {
   flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .header-actions {

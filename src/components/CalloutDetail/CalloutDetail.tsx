@@ -140,14 +140,8 @@ export function CalloutDetail({ callout }: CalloutDetailProps) {
             <ChevronDown size={18} />
           </button>
         </div>
-        
-        <div className="header-user">
-          <img 
-            src={callout.assignedBy.avatar} 
-            alt={callout.assignedBy.name}
-            className="user-avatar"
-          />
-        </div>
+
+        <div className="header-spacer" />
 
         <div className="header-actions">
           <button className="icon-btn">
