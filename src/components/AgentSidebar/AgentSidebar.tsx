@@ -34,6 +34,7 @@ export function AgentSidebar({ action, isLoading = false }: AgentSidebarProps) {
   }, [action, isLoading]);
 
   const getAgentIcon = () => {
+    if (!action) return null;
     switch (action.type) {
       case 'calendar':
         return <Calendar size={20} />;
@@ -49,6 +50,7 @@ export function AgentSidebar({ action, isLoading = false }: AgentSidebarProps) {
   };
 
   const getServiceBgColor = () => {
+    if (!action) return null;
     switch (action.type) {
       case 'calendar':
         return '#4285f4';
@@ -64,6 +66,7 @@ export function AgentSidebar({ action, isLoading = false }: AgentSidebarProps) {
   };
 
   const getServiceName = () => {
+    if (!action) return null;
     switch (action.type) {
       case 'calendar':
         return 'Google Calendar';
@@ -118,7 +121,11 @@ export function AgentSidebar({ action, isLoading = false }: AgentSidebarProps) {
         <div className="agent-service-card">
           <div 
             className="service-icon" 
-            style={{ backgroundColor: getServiceBgColor() }}
+            style={
+              getServiceBgColor()
+                ? { backgroundColor: getServiceBgColor() as React.CSSProperties['backgroundColor'] }
+                : undefined
+            }
           >
             {getAgentIcon()}
           </div>

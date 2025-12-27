@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
-import { Sidebar, CalloutList, CalloutDetail, AgentSidebar, LoadingSpinner } from './components';
+import { Sidebar, CalloutList, CalloutDetail, AgentSidebar } from './components';
 import './App.css';
 
 function AppContent() {
