@@ -84,7 +84,7 @@
   position: relative;
   z-index: 20;
   overflow: hidden;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
 }
 
@@ -99,7 +99,7 @@
   flex: 1;
   max-width: 820px;
   min-width: 500px;
-  height: calc(100vh - 80px);
+  max-height: calc(100vh - 80px);
   animation: slideUp 0.3s ease;
 }
 
@@ -118,6 +118,7 @@
 .agent-panel {
   width: 320px;
   min-width: 320px;
+  max-height: calc(100vh - 80px);
   flex-shrink: 0;
   animation: slideIn 0.3s ease;
 }
@@ -131,19 +132,6 @@
     opacity: 1;
     transform: translateX(0);
   }
-}
-
-/* Agent loading panel */
-.agent-loading-panel {
-  width: 320px;
-  min-width: 320px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: slideIn 0.3s ease;
 }
 
 /* Responsive adjustments */
@@ -169,12 +157,13 @@
   .detail-panel {
     max-width: none;
     min-width: auto;
+    height: auto;
   }
 
-  .agent-panel,
-  .agent-loading-panel {
+  .agent-panel {
     width: 100%;
     min-width: auto;
+    height: auto;
   }
 }
 

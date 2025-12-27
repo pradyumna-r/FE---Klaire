@@ -9,9 +9,11 @@ function AppContent() {
 
   const isDetailView = viewState === 'detail' || viewState === 'detail-with-agent';
   const isAgentView = viewState === 'detail-with-agent';
+  // Show blur when agent is loading OR when agent panel is open
+  const showAgentBlur = isAgentLoading || isAgentView;
 
   const handleBackdropClick = () => {
-    if (isAgentView) {
+    if (showAgentBlur) {
       closeAgentSidebar();
     }
   };
@@ -21,8 +23,8 @@ function AppContent() {
       <Sidebar activeTab={activeNavTab} onTabChange={setActiveNavTab} />
       
       <main className="main-content">
-        {/* Background blur overlay when agent is active */}
-        {isAgentView && (
+        {/* Background blur overlay when agent is loading or active */}
+        {showAgentBlur && (
           <div className="backdrop-blur" onClick={handleBackdropClick} />
         )}
 
@@ -35,14 +37,14 @@ function AppContent() {
 
         {/* Detail view with minimized list */}
         {isDetailView && (
-          <div className={`detail-view ${isAgentView ? 'with-agent' : ''}`}>
+          <div className={`detail-view ${showAgentBlur ? 'with-agent' : ''}`}>
             {/* Minimized callout list */}
             <div className="minimized-list-container">
               <CalloutList isMinimized />
             </div>
 
             {/* Floating detail and agent panels */}
-            <div className={`floating-panels ${isAgentView ? 'blurred-background' : ''}`}>
+            <div className={`floating-panels ${showAgentBlur ? 'blurred-background' : ''}`}>
               {/* Callout detail panel */}
               {selectedCallout && (
                 <div className="detail-panel">
@@ -50,16 +52,10 @@ function AppContent() {
                 </div>
               )}
 
-              {/* Agent sidebar panel */}
-              {isAgentLoading && (
-                <div className="agent-loading-panel">
-                  <LoadingSpinner size="medium" text="Connecting agent..." />
-                </div>
-              )}
-
-              {agentAction && !isAgentLoading && (
+              {/* Agent sidebar panel - show when loading OR when action is ready */}
+              {(isAgentLoading || agentAction) && (
                 <div className="agent-panel">
-                  <AgentSidebar action={agentAction} />
+                  <AgentSidebar action={agentAction} isLoading={isAgentLoading} />
                 </div>
               )}
             </div>

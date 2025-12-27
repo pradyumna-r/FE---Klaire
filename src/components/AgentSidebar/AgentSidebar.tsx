@@ -5,23 +5,33 @@ import { useApp } from '../../context/AppContext';
 import './AgentSidebar.css';
 
 interface AgentSidebarProps {
-  action: AgentAction;
+  action: AgentAction | null;
+  isLoading?: boolean;
 }
 
-export function AgentSidebar({ action }: AgentSidebarProps) {
+export function AgentSidebar({ action, isLoading = false }: AgentSidebarProps) {
   const [status, setStatus] = useState<'connecting' | 'processing' | 'completed'>('connecting');
   const { closeAgentSidebar } = useApp();
 
   useEffect(() => {
-    // Simulate agent connection and processing
-    const timer1 = setTimeout(() => setStatus('processing'), 1000);
-    const timer2 = setTimeout(() => setStatus('completed'), 3000);
+    // Reset status when loading starts or action changes
+    if (isLoading) {
+      setStatus('connecting');
+      return;
+    }
+    
+    if (!action) return;
+
+    // After loading completes, start processing flow
+    setStatus('connecting');
+    const timer1 = setTimeout(() => setStatus('processing'), 500);
+    const timer2 = setTimeout(() => setStatus('completed'), 2500);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [action]);
+  }, [action, isLoading]);
 
   const getAgentIcon = () => {
     switch (action.type) {
@@ -67,6 +77,33 @@ export function AgentSidebar({ action }: AgentSidebarProps) {
         return 'Service';
     }
   };
+
+  // Show loading state when isLoading is true
+  if (isLoading || !action) {
+    return (
+      <div className="agent-sidebar">
+        <div className="agent-header">
+          <span className="agent-title">Connecting agent...</span>
+          <button className="close-btn" onClick={closeAgentSidebar}>
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="agent-content agent-loading-content">
+          <div className="agent-loading-state">
+            <Loader2 size={32} className="spinner" />
+            <span className="loading-text">Connecting to service...</span>
+          </div>
+        </div>
+
+        <div className="agent-footer">
+          <div className="interaction-prompt loading">
+            <span className="prompt-text">Please wait...</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="agent-sidebar">
