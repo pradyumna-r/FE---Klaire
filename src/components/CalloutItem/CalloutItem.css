@@ -1,0 +1,123 @@
+.callout-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border-radius: 8px;
+  margin: 2px 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: inherit;
+}
+
+.callout-item:hover {
+  background: #f8fafc;
+}
+
+.callout-item.selected {
+  background: #f1f5f9;
+}
+
+.callout-checkbox {
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.callout-item:hover .callout-checkbox {
+  color: #94a3b8;
+}
+
+.callout-source-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 6px;
+}
+
+.callout-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.callout-title {
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.callout-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.callout-date {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.callout-calendar-icon {
+  color: #94a3b8;
+}
+
+.priority-icon {
+  flex-shrink: 0;
+}
+
+.priority-icon.high {
+  color: #ef4444;
+}
+
+.priority-icon.medium {
+  color: #64748b;
+}
+
+.priority-icon.low {
+  color: #94a3b8;
+}
+
+/* Minimized styles */
+.callout-item.minimized {
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.callout-item.minimized .callout-checkbox {
+  width: 14px;
+  height: 14px;
+}
+
+.callout-item.minimized .callout-source-icon {
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+}
+
+.callout-item.minimized .callout-title {
+  flex: 1;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.callout-item.minimized .callout-date {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-left: auto;
+}
+
